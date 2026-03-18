@@ -60,6 +60,16 @@ StudySyncPro is a modern, AI-powered ERP system designed for Colleges and Univer
    python app.py
    ```
 
+## 🔐 Demo Credentials
+
+Access the system using these pre-seeded accounts:
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **HOD** | `hod@studysync.pro` | `admin123` |
+| **Faculty** | `faculty@studysync.pro` | `password123` |
+| **Student** | `student@studysync.pro` | `password123` |
+
 ## 📄 Documentation
 - [Academic Structure](academic_structure.txt)
 
