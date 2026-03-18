@@ -4,6 +4,16 @@ StudySyncPro is a modern, AI-powered ERP system designed for Colleges and Univer
 
 ## 🚀 Key Features
 
+### 🖼️ System Preview
+
+| Login Page | Student Dashboard |
+| :--- | :--- |
+| ![Login](docs/screenshots/login.png) | ![Student Dashboard](docs/screenshots/student_dashboard.png) |
+
+| Faculty Dashboard | HOD Dashboard |
+| :--- | :--- |
+| ![Faculty Dashboard](docs/screenshots/faculty_dashboard.png) | ![HOD Dashboard](docs/screenshots/hod_dashboard.png) |
+
 ### 👤 Role-Based Dashboards
 - **Student Dashboard**: Personalized view of enrolled subjects, notifications, and an interactive academic calendar.
 - **Faculty Dashboard**: Tools for managing subjects, uploading materials, and tracking student enrollment.
