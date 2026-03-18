@@ -9,10 +9,10 @@ StudySyncPro is a modern, AI-powered ERP system designed for Colleges and Univer
 - **Faculty Dashboard**: Tools for managing subjects, uploading materials, and tracking student enrollment.
 - **HOD Dashboard**: Departmental oversight, course management, and faculty/student directories.
 
-### 🤖 AI Sequential RAG Chatbot
-- **Module-Scoped AI**: A real-time Retrieval-Augmented Generation (RAG) assistant inside every course module.
-- **Context Awareness**: Answers questions based solely on the documents (PDF, Word, Text) uploaded for that specific module.
-- **OpenRouter Integration**: Powered by `Mixtral-8x7B` via OpenRouter for high-quality academic reasoning.
+### 🤖 AI-Powered Suite
+- **AI Sequential Search**: A global intelligent search bar that understands natural language queries to find study materials across all modules and subjects.
+- **Module-Scoped RAG Chatbot**: A real-time assistant inside every course module that answers questions based strictly on the uploaded materials (PDF, DOCX, TXT).
+- **OpenRouter Integration**: Powered by `Mixtral-8x7B` for expert-level academic guidance.
 
 ### 📂 Smart Content Management
 - **Hierarchical Organization**: Course → Specialization → Subject → Module → Unit → File.
@@ -64,4 +64,4 @@ StudySyncPro is a modern, AI-powered ERP system designed for Colleges and Univer
 - [Academic Structure](academic_structure.txt)
 
 ---
-Developed with ❤️ by Leviiiz18 & Antigravity AI
+
