@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StudySyncPro ERP{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .sidebar-link:hover { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .sidebar-link.active { background: rgba(59, 130, 246, 0.2); color: #2563eb; border-right: 4px solid #2563eb; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    {% if current_user.is_authenticated %}
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-slate-200 flex-shrink-0 hidden md:flex flex-col">
+            <div class="p-6 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                        <i class="fas fa-graduation-cap text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-800">StudySync<span class="text-blue-600">Pro</span></span>
+                </div>
+            </div>
+            
+            <nav class="flex-1 overflow-y-auto py-4">
+                <div class="px-4 mb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Main</div>
+                
+                {% if current_user.role == 'hod' %}
+                <a href="{{ url_for('hod.dashboard') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if request.endpoint == 'hod.dashboard' }}">
+                    <i class="fas fa-chart-pie w-6"></i> <span>Dashboard</span>
+                </a>
+                <a href="{{ url_for('hod.manage_courses') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if 'course' in request.endpoint }}">
+                    <i class="fas fa-university w-6"></i> <span>Courses</span>
+                </a>
+                <a href="{{ url_for('hod.manage_specializations') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if 'specialization' in request.endpoint }}">
+                    <i class="fas fa-tags w-6"></i> <span>Specializations</span>
+                </a>
+                <a href="{{ url_for('hod.manage_subjects') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if 'subject' in request.endpoint }}">
+                    <i class="fas fa-book w-6"></i> <span>Subjects</span>
+                </a>
+                <a href="{{ url_for('hod.manage_users') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if 'manage_users' in request.endpoint }}">
+                    <i class="fas fa-user-plus w-6"></i> <span>Manage Users</span>
+                </a>
+
+                <div class="px-4 py-2 mt-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Directory</div>
+                <a href="{{ url_for('hod.view_faculty') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if 'view_faculty' in request.endpoint }}">
+                    <i class="fas fa-chalkboard-teacher w-6"></i> <span>Faculty</span>
+                </a>
+                <a href="{{ url_for('hod.view_students') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if 'view_students' in request.endpoint }}">
+                    <i class="fas fa-user-graduate w-6"></i> <span>Students</span>
+                </a>
+            {% elif current_user.role == 'faculty' %}
+                <a href="{{ url_for('faculty.dashboard') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if request.endpoint == 'faculty.dashboard' }}">
+                    <i class="fas fa-chalkboard-teacher w-6"></i> <span>My Subjects</span>
+                </a>
+                <a href="{{ url_for('faculty.my_students') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if request.endpoint == 'faculty.my_students' }}">
+                    <i class="fas fa-users w-6"></i> <span>My Students</span>
+                </a>
+                <a href="{{ url_for('faculty.calendar') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if request.endpoint == 'faculty.calendar' }}">
+                    <i class="fas fa-calendar-alt w-6"></i> <span>Academic Calendar</span>
+                </a>
+                
+                {% elif current_user.role == 'student' %}
+                <a href="{{ url_for('student.dashboard') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if request.endpoint == 'student.dashboard' }}">
+                    <i class="fas fa-home w-6"></i> <span>Dashboard</span>
+                </a>
+                <a href="{{ url_for('student.my_courses') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if request.endpoint == 'student.my_courses' }}">
+                    <i class="fas fa-book w-6"></i> <span>My Courses</span>
+                </a>
+                <a href="{{ url_for('student.calendar') }}" class="sidebar-link flex items-center px-4 py-3 transition-colors {{ 'active' if request.endpoint == 'student.calendar' }}">
+                    <i class="fas fa-calendar-alt w-6"></i> <span>Schedule</span>
+                </a>
+                {% endif %}
+            </nav>
+            
+            <div class="p-4 border-t border-slate-100">
+                <div class="flex items-center space-x-3 p-3 bg-slate-50 rounded-xl">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
+                        {{ current_user.name[0] | upper }}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">{{ current_user.role }}</span>
+                        <p class="text-xs text-slate-500 capitalize">{{ current_user.role }}</p>
+                    </div>
+                    <a href="{{ url_for('auth.logout') }}" class="text-slate-400 hover:text-red-500 transition-colors">
+                        <i class="fas fa-power-off text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col min-w-0 bg-slate-50 overflow-hidden">
+            <!-- Header -->
+            <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 z-10">
+                <div class="flex items-center">
+                    <button class="md:hidden text-slate-500 mr-4">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2 class="text-lg font-semibold text-slate-800">{% block header_title %}{% endblock %}</h2>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <i class="fas fa-bell text-slate-400 hover:text-blue-600 cursor-pointer"></i>
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </div>
+                    <div class="h-8 w-px bg-slate-200"></div>
+                    <span class="text-sm text-slate-500">{{ current_user.department }} Department</span>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto p-8">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="mb-6 p-4 rounded-xl border flex items-center space-x-3 {% if category == 'success' %}bg-green-50 border-green-200 text-green-700{% else %}bg-red-50 border-red-200 text-red-700{% endif %} animate-fade-in">
+                        <i class="fas {% if category == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %}"></i>
+                        <p class="text-sm font-medium">{{ message }}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+    {% else %}
+    {% block auth_content %}{% endblock %}
+    {% endif %}
+</body>
+</html>
